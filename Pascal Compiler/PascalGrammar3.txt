@@ -1,0 +1,44 @@
+EBNF Pascal Grammar Abbreviated from 
+http://www.fit.vutbr.cz/study/courses/APR/public/ebnf.html
+
+
+program ::= "program" identifier "(" identifier-list ")" ";" block "."
+block ::= constant_definition_part variable_declaration_part statement_part
+
+constant_definition_part ::= "const" constant_definition ";" { constant_definition ";" }
+constant_definition ::= identifier "=" constant
+
+variable_declaration_part ::= "var" variable_declaration ";" { variable_declaration ";" }
+variable_declaration ::= identifier_list ":" atype
+
+atype ::= identifier
+
+statement_part ::= "begin" statement_sequence "end"
+statement_sequence ::= statement { ";" statement }
+statement ::= (simple_statement | structured_statement)
+simple_statement ::= assignment_statement
+assignment_statement ::= variable ":=" expression
+structured_statement ::= condypeitional_statement | compound_statement | repetitive_statement | write_statement
+compound_statement ::= "begin" statement_sequence "end"
+
+repetitive_statement ::= while_statement | repeat_statement | for_statement
+while_statement ::= "while" expression "do" statement
+repeat_statement ::= "repeat" statement_sequence "until" expression
+for_statement ::= "for" identifier ":=" expression ("to" | "downto") expression "do" statement
+
+conditional_statement ::= if_statement
+if_statement ::= "if" expression "then" statement [ "else" statement ]
+
+output_value ::= expression [ ":" expression [ ":" expression ] ]
+write_statement ::= ("writeln" | "write" ) "(" 
+
+expression ::= simple_expression [ relational_operator simple_expression ]
+simple_expression ::= [ sign ] term { addition_operator term }
+term ::= factor { multiplication-operator factor }
+factor ::= "(" expression ")" | number | variable 
+relational_operator ::= "=" | "<>" | "<" | "<=" | ">" | ">="
+addition_operator ::= "+" | "-" | "or"
+multiplication-operator ::= "*" | "/" | "div" | "mod" | "and"
+variable ::= identifier
+
+
