@@ -1,0 +1,19 @@
+1.  program ::= stmt_list $$$
+2.  stmt_list ::= stmt stmt_list
+3.  stmt_list ::= epsilon
+4.  stmt ::= id := expr 
+5.  stmt ::= read id
+6.  stmt ::= write expr
+7.  expr ::= term term_tail
+8.  term_tail ::= add_op term term_tail
+9.  term_tail ::= epsilon
+10. term ::= factor fact_tail
+11. fact_tail ::= mult_op fact fact_tail
+12. fact_tail ::= epsilon
+13. factor ::= ( expr )
+14. factor ::= id
+15. factor ::= number
+16. add_op ::= +
+17. add_op ::= -
+18. mult_op ::= *
+19. mult_op ::= /

@@ -1,0 +1,2 @@
+// This is a test file for the calculator language scanner
+result := (x + .234) * (y / 23 + /* pi */ 3.14159)
